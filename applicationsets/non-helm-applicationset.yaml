@@ -26,6 +26,3 @@ spec:
         automated:
           prune: true
           selfHeal: true
-      monitoring:
-        enabled: false
-        createPrometheusRules: false
