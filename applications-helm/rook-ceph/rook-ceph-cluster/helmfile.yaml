@@ -1,0 +1,10 @@
+repositories:
+- name: rook-release
+  url: https://charts.rook.io/release
+
+releases:
+- name: rook-ceph-prod-cluster
+  chart: rook-release/rook-ceph-cluster
+  version: v1.17.4
+  values:
+  - ./values.yaml
