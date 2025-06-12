@@ -3,4 +3,4 @@ scaleDownOperator: false
 csi:
   enableRBDSnapshotter: true
 monitoring:
-  enabled: false
+  enabled: true
