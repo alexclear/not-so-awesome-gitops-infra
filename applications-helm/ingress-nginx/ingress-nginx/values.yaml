@@ -25,5 +25,5 @@ controller:
       enabled: false
   terminationGracePeriodSeconds: 30
   allowSnippetAnnotations: true
-  #service:
-  #  loadBalancerIP: 10.1.231.213
+  service:
+    loadBalancerIP: 192.168.50.241
