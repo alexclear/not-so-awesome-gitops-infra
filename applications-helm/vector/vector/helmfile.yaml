@@ -1,0 +1,10 @@
+repositories:
+- name: vector
+  url: https://helm.vector.dev
+
+releases:
+- name: vector
+  chart: vector/vector
+  version: 0.42.1
+  values:
+  - ./values.yaml
