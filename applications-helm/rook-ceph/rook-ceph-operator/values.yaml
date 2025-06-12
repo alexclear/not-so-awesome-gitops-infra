@@ -1,0 +1,6 @@
+allowLoopDevices: true
+scaleDownOperator: false
+csi:
+  enableRBDSnapshotter: true
+monitoring:
+  enabled: false
