@@ -2,6 +2,18 @@
 
 This repository contains Kubernetes infrastructure configurations managed by ArgoCD. The structure follows GitOps principles where changes to this repository automatically synchronize with the target cluster.
 
+## Installation
+
+Follow these steps to install ArgoCD and bootstrap the infrastructure:
+
+1) `kubectl create ns argocd`
+2) `helm upgrade --install argocd argo/argo-cd -n argocd --version=7.8.26 -f ./applications-helm/argocd/argocd/values.yaml`
+3) `kubectl apply -f main-application.yaml -n argocd`
+4) `kubectl get secrets argocd-initial-admin-secret -n argocd -o yaml` to get the base64-encoded admin ArgoCD UI password
+5) `kubectl port-forward svc/argocd-server -n argocd 8443:80` to forward the ArgoCD port, open http://127.0.0.1:8443 locally and login there then, ignore certificate errors ("thisisunsafe" trick in Chrome browser: when you see the certificate error page, type "thisisunsafe" to proceed)
+6) Open Settings -> Repositories in the ArgoCD UI and connect your git repo manually (you typically need to provide just "Repository URL" and "SSH private key data")
+7) You won't be able to add all applications at once because monitoring CRDs are not installed separately. Turn off monitoring for ArgoCD, Rook operator, Rook Ceph cluster, and Nginx ingress controller until you populate the "monitoring" namespace with the Prometheus stack and its CRDs
+
 ## Core Components
 
 ### Main Application
