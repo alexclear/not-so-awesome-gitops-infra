@@ -50,10 +50,12 @@ repoServer:
   repoCacheExpiration: 180
   replicas: 1
   volumes:
-    #- name: homeargocd
+    - name: homeargocdcache
+      emptyDir: {}
     #  persistentVolumeClaim:
     #    claimName: pvc-argocd-homeargocd
-    #- name: homeargocdconfig
+    - name: homeargocdconfig
+      emptyDir: {}
     #  persistentVolumeClaim:
     #    claimName: pvc-argocd-homeargocd-config
     - name: custom-tools
@@ -87,10 +89,10 @@ repoServer:
       name: helmfile-tmp
     - mountPath: /var/run/argocd
       name: var-files
-    #- mountPath: /home/argocd/.cache
-    #  name: homeargocd
-    #- mountPath: /home/argocd/.config
-    #  name: homeargocdconfig
+    - mountPath: /home/argocd/.cache
+      name: homeargocdcache
+    - mountPath: /home/argocd/.config
+      name: homeargocdconfig
     - mountPath: /home/argocd/cmp-server/plugins
       name: plugins
     - mountPath: /custom-tools
