@@ -1,0 +1,15 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: lb-pool
+spec:
+  addresses:
+  - 192.168.50.241/32
+  - 192.168.50.242/32
+  - 192.168.50.243/32
+  - 192.168.50.244/32
+  - 192.168.50.245/32
+  - 192.168.50.246/32
+  - 192.168.50.247/32
+  autoAssign: true
+  avoidBuggyIPs: false
