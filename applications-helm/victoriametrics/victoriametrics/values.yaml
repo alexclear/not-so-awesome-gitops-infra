@@ -1,4 +1,5 @@
 server:
+  retentionPeriod: "10d"
   extraArgs:
     envflag.enable: true
     envflag.prefix: VM_
