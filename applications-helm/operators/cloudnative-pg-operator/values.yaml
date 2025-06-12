@@ -1,0 +1,7 @@
+fullnameOverride: cloudnative-pg
+replicaCount: 1
+webhook:
+  validating:
+    create: true
+  mutating:
+    create: true

@@ -1,0 +1,10 @@
+repositories:
+- name: cnpg
+  url: https://cloudnative-pg.github.io/charts
+
+releases:
+- name: cloudnative-pg
+  chart: cnpg/cloudnative-pg
+  version: 0.24.0
+  values:
+  - ./values.yaml
