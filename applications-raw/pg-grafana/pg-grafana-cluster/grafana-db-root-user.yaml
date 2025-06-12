@@ -1,0 +1,17 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: grafana-db-root-user
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: grafana-db-root-user
+  dataFrom:
+  - extract:
+      key: grafana-db-root-user
+      metadataPolicy: None
+      conversionStrategy: Default
+      decodingStrategy: None

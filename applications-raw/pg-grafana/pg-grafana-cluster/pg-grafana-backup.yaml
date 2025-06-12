@@ -1,0 +1,7 @@
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: pg-grafana-backup
+spec:
+  bucketName: pg-grafana-backup
+  storageClassName: ceph-bucket

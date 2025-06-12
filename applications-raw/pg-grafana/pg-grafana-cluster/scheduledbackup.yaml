@@ -1,0 +1,11 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: grafana
+spec:
+  backupOwnerReference: none
+  cluster:
+    name: grafana
+  method: barmanObjectStore
+  schedule: 0 45 23 * * *
+  target: "prefer-standby"
