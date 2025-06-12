@@ -52,7 +52,7 @@ spec:
         kind: CustomResourceDefinition
         jsonPointers:
         - /spec/conversion/webhook/clientConfig/caBundle
-      - group: apps/v1
+      - group: apps
         kind: Deployment
         jsonPointers:
         - /spec/template/spec/containers/0/env/0/valueFrom/resourceFieldRef/divisor
