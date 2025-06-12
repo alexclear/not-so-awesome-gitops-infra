@@ -114,7 +114,7 @@ cephClusterSpec:
   # enable prometheus alerting for cluster
   monitoring:
     # requires Prometheus to be pre-installed
-    enabled: false
+    enabled: true
     #exporter:
     #  perfCountersPrioLimit: 5
   network:
@@ -423,5 +423,5 @@ configOverride: |
   osd_memory_target = 1G
 
 monitoring:
-  enabled: false
-  createPrometheusRules: false
+  enabled: true
+  createPrometheusRules: true
