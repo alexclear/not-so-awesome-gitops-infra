@@ -76,7 +76,7 @@ repoServer:
     image: lucj/argocd-plugin-helmfile:latest
     command: ["/var/run/argocd/argocd-cmp-server"]
     securityContext:
-      readOnlyRootFilesystem: true
+      readOnlyRootFilesystem: false
       runAsNonRoot: true
       runAsUser: 999
     env:
