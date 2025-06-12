@@ -424,4 +424,4 @@ configOverride: |
 
 monitoring:
   enabled: false
-  createPrometheusRules: true
+  createPrometheusRules: false
