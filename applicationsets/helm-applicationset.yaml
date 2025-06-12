@@ -57,3 +57,5 @@ spec:
         jsonPointers:
         - /spec/template/spec/containers/0/env/0/valueFrom/resourceFieldRef/divisor
         - /spec/template/spec/containers/0/env/1/valueFrom/resourceFieldRef/divisor
+        - /spec/template/spec/initContainers/0/env/0/valueFrom/resourceFieldRef/divisor
+        - /spec/template/spec/initContainers/0/env/1/valueFrom/resourceFieldRef/divisor
