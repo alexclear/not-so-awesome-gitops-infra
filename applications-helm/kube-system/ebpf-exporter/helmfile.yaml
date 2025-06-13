@@ -1,0 +1,6 @@
+releases:
+- name: ebpf-exporter
+  chart: oci://registry-1.docker.io/gitinsky/ebpf-exporter
+  version: 0.1.0
+  values:
+  - ./values.yaml
