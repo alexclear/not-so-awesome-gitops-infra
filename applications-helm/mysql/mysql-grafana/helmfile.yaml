@@ -1,0 +1,10 @@
+repositories:
+- name: bitnami
+  url: https://bitnami.spbnix.com/bitnami
+
+releases:
+- name: mysql-grafana
+  chart: bitnami/mysql
+  version: 13.0.0
+  values:
+  - ./values.yaml

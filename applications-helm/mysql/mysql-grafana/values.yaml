@@ -1,0 +1,22 @@
+auth:
+  createDatabase: true
+  database: "grafana"
+  username: "grafana"
+  existingSecret: "mysql-grafana-passwords"
+
+primary:
+  startupProbe:
+    enabled: true
+  readinessProbe:
+    enabled: true
+  livenessProbe:
+    enabled: true
+  persistence:
+    enabled: true
+    storageClass: "ceph-block-3"
+    accessModes:
+      - ReadWriteOnce
+    size: 1Gi
+
+secondary:
+  replicaCount: 0
