@@ -13,6 +13,10 @@ spec:
   template:
     metadata:
       name: '{{path.basename}}'
+      {{- if eq .path "applications-helm/mysql/mysql-grafana" }}
+      annotations:
+        argocd.argoproj.io/sync-options: ServerSideApply=false
+      {{- end }}
     spec:
       project: default
       source:
@@ -29,7 +33,15 @@ spec:
           selfHeal: true
         syncOptions:
         - CreateNamespace=true
+        {{- if .metadata.annotations }}
+          {{- if hasKey .metadata.annotations "argocd.argoproj.io/sync-options" }}
+        - {{ index .metadata.annotations "argocd.argoproj.io/sync-options" }}
+          {{- else }}
         - ServerSideApply=true
+          {{- end }}
+        {{- else }}
+        - ServerSideApply=true
+        {{- end }}
       ignoreDifferences:
       - group: admissionregistration.k8s.io
         kind: ValidatingWebhookConfiguration
