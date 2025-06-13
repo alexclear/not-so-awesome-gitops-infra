@@ -25,12 +25,11 @@ grafana:
 
   grafana.ini:
     database:
-      type: postgres
-      host: postgres-master.postgres.svc.cluster.local:5432
+      type: mysql
+      host: mysql-grafana.mysql.svc.cluster.local:3306
       name: grafana
       user: grafana
       password: $__env{GRAFANA_DB_PASSWORD}
-      ssl_mode: require
     log.file:
       level: debug
     server:
