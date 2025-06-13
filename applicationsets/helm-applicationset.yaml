@@ -13,8 +13,9 @@ spec:
   template:
     metadata:
       name: '{{path.basename}}'
-      {{- if eq .path "applications-helm/mysql/mysql-grafana" }}
       annotations:
+        application-path: "{{path}}"
+      {{- if eq .path "applications-helm/mysql/mysql-grafana" }}
         argocd.argoproj.io/sync-options: ServerSideApply=false
       {{- end }}
     spec:
