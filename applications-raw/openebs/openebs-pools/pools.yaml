@@ -13,7 +13,7 @@ metadata:
   name: k3s-worker-02
 spec:
   node: k3s-worker-02
-  disks: ["/dev/sdc"]
+  disks: ["/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi2"]
 ---
 apiVersion: openebs.io/v1beta3
 kind: DiskPool
