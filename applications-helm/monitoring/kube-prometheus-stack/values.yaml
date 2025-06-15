@@ -77,6 +77,18 @@ grafana:
       isDefaultDatasource: false
 
 prometheus:
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    hosts:
+      - prometheus-pve1.spbnix.local
+    paths:
+      - /
+    pathType: ImplementationSpecific
+    tls:
+      - secretName: prometheus-general-tls
+        hosts:
+          - prometheus-pve1.spbnix.local
   thanosService:
     enabled: true
   thanosServiceMonitor:
