@@ -1,0 +1,23 @@
+engines:
+  local:
+    lvm:
+      enabled: false
+    zfs:
+      enabled: false
+  replicated:
+    mayastor:
+      enabled: true
+
+loki:
+  enabled: false
+  minio:
+    enabled: false
+
+alloy:
+  enabled: false
+
+mayastor:
+  loki-stack:
+    enabled: false
+  localpv-provisioner:
+    enabled: false
