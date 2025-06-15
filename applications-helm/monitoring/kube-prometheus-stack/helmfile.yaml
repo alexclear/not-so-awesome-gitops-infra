@@ -16,7 +16,7 @@ releases:
     patch:
     - op: add
       path: "/metadata/annotations/argocd.argoproj.io~1sync-options"
-      value: "Replace=true"
+      value: "ServerSideApply=true"
   - target:
       version: v1
       kind: CustomResourceDefinition
@@ -24,4 +24,12 @@ releases:
     patch:
     - op: add
       path: "/metadata/annotations/argocd.argoproj.io~1sync-options"
-      value: "Replace=true"
+      value: "ServerSideApply=true"
+  - target:
+      version: v1
+      kind: CustomResourceDefinition
+      name: scrapeconfigs.monitoring.coreos.com
+    patch:
+    - op: add
+      path: "/metadata/annotations/argocd.argoproj.io~1sync-options"
+      value: "ServerSideApply=true"
