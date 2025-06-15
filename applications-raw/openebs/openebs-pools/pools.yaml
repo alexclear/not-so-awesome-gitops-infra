@@ -1,5 +1,5 @@
 ---
-apiVersion: openebs.io/v1beta1
+apiVersion: openebs.io/v1beta3
 kind: DiskPool
 metadata:
   name: k3s-worker-01
@@ -7,7 +7,7 @@ spec:
   node: k3s-worker-01
   disks: ["/dev/sdc"]
 ---
-apiVersion: openebs.io/v1beta1
+apiVersion: openebs.io/v1beta3
 kind: DiskPool
 metadata:
   name: k3s-worker-02
@@ -15,7 +15,7 @@ spec:
   node: k3s-worker-02
   disks: ["/dev/sdc"]
 ---
-apiVersion: openebs.io/v1beta1
+apiVersion: openebs.io/v1beta3
 kind: DiskPool
 metadata:
   name: k3s-worker-03
@@ -23,7 +23,7 @@ spec:
   node: k3s-worker-03
   disks: ["/dev/sdc"]
 ---
-apiVersion: openebs.io/v1beta1
+apiVersion: openebs.io/v1beta3
 kind: DiskPool
 metadata:
   name: k3s-worker-04
