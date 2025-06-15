@@ -12,23 +12,6 @@ releases:
   - target:
       version: v1
       kind: CustomResourceDefinition
-      name: prometheuses.monitoring.coreos.com
-    patch:
-    - op: add
-      path: "/metadata/annotations/argocd.argoproj.io~1sync-options"
-      value: "ServerSideApply=true"
-  - target:
-      version: v1
-      kind: CustomResourceDefinition
-      name: prometheusagents.monitoring.coreos.com
-    patch:
-    - op: add
-      path: "/metadata/annotations/argocd.argoproj.io~1sync-options"
-      value: "ServerSideApply=true"
-  - target:
-      version: v1
-      kind: CustomResourceDefinition
-      name: scrapeconfigs.monitoring.coreos.com
     patch:
     - op: add
       path: "/metadata/annotations/argocd.argoproj.io~1sync-options"
