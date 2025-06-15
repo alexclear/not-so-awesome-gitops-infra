@@ -44,6 +44,28 @@ cephBlockPools:
         # Inline compression mode for the data pool
         # Further reference: https://docs.ceph.com/docs/master/rados/configuration/bluestore-config-ref/#inline-compression
         compression_mode: aggressive
+  - name: ceph-blockpool-3-uncompressed
+    storageClass:
+      enabled: true
+      name: ceph-block-3-uncompressed
+      parameters:
+        csi.storage.k8s.io/controller-expand-secret-name: rook-csi-rbd-provisioner
+        csi.storage.k8s.io/controller-expand-secret-namespace: 'rook-ceph'
+        csi.storage.k8s.io/fstype: ext4
+        csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
+        csi.storage.k8s.io/node-stage-secret-namespace: 'rook-ceph'
+        csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
+        csi.storage.k8s.io/provisioner-secret-namespace: 'rook-ceph'
+        imageFeatures: layering
+        imageFormat: "2"
+    spec:
+      failureDomain: host
+      replicated:
+        size: 3
+      parameters:
+        # Inline compression mode for the data pool
+        # Further reference: https://docs.ceph.com/docs/master/rados/configuration/bluestore-config-ref/#inline-compression
+        compression_mode: none
 
 cephClusterSpec:
   cephVersion:
