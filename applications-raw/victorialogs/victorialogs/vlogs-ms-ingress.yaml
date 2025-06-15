@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vlogs-ms
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: vlogs-ms-pve1.spbnix.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: vlogs-vlogs-ms
+            port:
+              name: http
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - vlogs-ms-pve1.spbnix.local
+    secretName: vlogs-ms-tls-secret
