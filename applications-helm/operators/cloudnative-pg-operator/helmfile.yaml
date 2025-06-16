@@ -12,7 +12,6 @@ releases:
   - target:
       version: v1
       kind: CustomResourceDefinition
-      name: poolers.postgresql.cnpg.io
     patch:
     - op: add
       path: "/metadata/annotations/argocd.argoproj.io~1sync-options"
