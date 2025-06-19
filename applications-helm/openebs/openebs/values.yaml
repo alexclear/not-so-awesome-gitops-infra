@@ -17,10 +17,10 @@ alloy:
   enabled: false
 
 mayastor:
-  #etcd:
-  #  extraEnvVars:
-  #  - name: ETCD_INITIAL_CLUSTER_STATE
-  #    value: existing
+  etcd:
+    extraEnvVars:
+    - name: ETCD_INITIAL_CLUSTER_STATE
+      value: existing
   loki-stack:
     enabled: false
   localpv-provisioner:
