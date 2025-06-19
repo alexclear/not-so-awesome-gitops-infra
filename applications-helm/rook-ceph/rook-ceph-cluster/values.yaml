@@ -330,9 +330,6 @@ cephClusterSpec:
       - name: "k3s-worker-03"
         devices:
           - name: "/dev/sdb"
-      - name: "k3s-worker-04"
-        devices:
-          - name: "/dev/sdb"
       - name: "k3s-worker-05"
         devices:
           - name: "/dev/sdb"
