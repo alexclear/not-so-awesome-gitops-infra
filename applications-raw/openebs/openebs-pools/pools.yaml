@@ -30,3 +30,11 @@ metadata:
 spec:
   node: k3s-worker-05
   disks: ["/dev/disk/by-path/pci-0000:02:00.0-scsi-0:0:2:0"]
+---
+apiVersion: openebs.io/v1beta3
+kind: DiskPool
+metadata:
+  name: k3s-worker-06
+spec:
+  node: k3s-worker-06
+  disks: ["/dev/disk/by-path/pci-0000:02:00.0-scsi-0:0:2:0"]
