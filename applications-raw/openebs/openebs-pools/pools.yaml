@@ -26,14 +26,6 @@ spec:
 apiVersion: openebs.io/v1beta3
 kind: DiskPool
 metadata:
-  name: k3s-worker-04
-spec:
-  node: k3s-worker-04
-  disks: ["/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi2"]
----
-apiVersion: openebs.io/v1beta3
-kind: DiskPool
-metadata:
   name: k3s-worker-05
 spec:
   node: k3s-worker-05
