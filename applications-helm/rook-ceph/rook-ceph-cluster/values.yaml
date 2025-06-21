@@ -5,7 +5,7 @@ ingress:
   dashboard:
     annotations:
     # If the dashboard has ssl: true the following will make sure the NGINX Ingress controller can expose the dashboard correctly
-      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      cert-manager.io/cluster-issuer: local-root-ca-issuer
       nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
       nginx.ingress.kubernetes.io/server-snippet: |
         proxy_ssl_verify off;
@@ -421,7 +421,7 @@ cephObjectStores:
     ingress:
       enabled: true
       annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        cert-manager.io/cluster-issuer: local-root-ca-issuer
         nginx.ingress.kubernetes.io/proxy-body-size: "50000m"
         nginx.ingress.kubernetes.io/server-snippet: |
           proxy_ssl_verify off;
