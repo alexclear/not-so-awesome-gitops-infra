@@ -44,6 +44,8 @@ grafana:
   ingress:
     enabled: true
     ingressClassName: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: local-root-ca-issuer
     hosts:
       - grafana-pve1.spbnix.local
     tls:
