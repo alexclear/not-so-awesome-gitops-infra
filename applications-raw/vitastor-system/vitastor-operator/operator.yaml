@@ -192,6 +192,7 @@ rules:
   resources:
   - pods
   - configmaps
+  - nodes
   verbs:
   - get
   - list
