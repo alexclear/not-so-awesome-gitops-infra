@@ -22,6 +22,7 @@ server:
       ingress.kubernetes.io/protocol: https
       ingress.kubernetes.io/secure-backends: "true"
       nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+      cert-manager.io/cluster-issuer: local-root-ca-issuer
     hostname: argocd-pve1.spbnix.local
     paths:
       - /
