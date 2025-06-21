@@ -15,4 +15,4 @@ initialClusterState: "new"
 
 args:
   - --max-txn-ops
-  - 200000
+  - "200000"
