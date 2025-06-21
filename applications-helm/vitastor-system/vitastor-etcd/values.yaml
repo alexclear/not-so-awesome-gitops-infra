@@ -12,3 +12,7 @@ auth:
 removeMemberOnContainerTermination: false
 
 initialClusterState: "new"
+
+args:
+  - --max-txn-ops
+  - 200000
