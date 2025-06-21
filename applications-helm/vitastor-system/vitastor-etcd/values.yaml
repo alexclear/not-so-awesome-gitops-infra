@@ -1,0 +1,14 @@
+persistence:
+  enabled: true
+  storageClass: "local-path"
+  size: 1Gi
+
+replicaCount: 3
+
+auth:
+  rbac:
+    create: false
+
+removeMemberOnContainerTermination: false
+
+initialClusterState: "new"
