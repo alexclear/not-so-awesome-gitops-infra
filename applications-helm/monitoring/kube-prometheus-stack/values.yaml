@@ -82,6 +82,8 @@ prometheus:
   ingress:
     enabled: true
     ingressClassName: "nginx"
+    annotations:
+      cert-manager.io/cluster-issuer: local-root-ca-issuer
     hosts:
       - prometheus-pve1.spbnix.local
     paths:
