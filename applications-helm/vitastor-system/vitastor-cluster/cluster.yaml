@@ -1,0 +1,11 @@
+apiVersion: control.vitastor.io/v1
+kind: VitastorCluster
+metadata:
+  name: vitastorcluster-test
+spec:
+  monitorReplicaNum: 3
+  vitastorNodeLabel: "vitastor-node"
+  disksReconciligPeriod: 60
+  agentImage: "antilles/vitastor-agent:1.6.0"
+  monitorImage: "antilles/vitastor-monitor:1.6.0"
+  osdImage: "antilles/vitastor-osd:1.6.0"
