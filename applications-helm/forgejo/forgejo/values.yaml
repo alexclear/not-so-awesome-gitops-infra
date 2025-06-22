@@ -1,0 +1,54 @@
+replicaCount: 1
+
+gitea:
+  admin:
+    existingSecret: gitea-admin-secret
+    email: 'gitea@gitea.spbnix.local'
+    passwordMode: keepUpdated
+
+postgresql-ha:
+  enabled: false
+
+postgresql:
+  enabled: true
+  diagnosticMode:
+    enabled: false
+  global:
+    postgresql:
+      auth:
+        password: gitea
+        database: gitea
+        username: gitea
+      service:
+        ports:
+          postgresql: 5432
+  primary:
+    persistence:
+      existingClaim: data-forgejo-postgresql-0
+  resources:
+    requests:
+      cpu: 400m
+      memory: 192Mi
+    limits:
+      cpu: 500m
+      memory: 192Mi
+
+persistence:
+  enabled: true
+  create: false
+  claimName: gitea-shared-storage
+
+service:
+  http:
+    type: NodePort
+    clusterIP:
+    externalTrafficPolicy: Local
+  ssh:
+    type: NodePort
+    clusterIP:
+
+redis-cluster:
+  enabled: true
+  persistence:
+    storageClass: "ceph-block-3"
+    size: 2Gi

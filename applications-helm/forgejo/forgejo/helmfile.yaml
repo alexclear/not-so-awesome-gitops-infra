@@ -1,0 +1,6 @@
+releases:
+- name: forgejo
+  chart: oci://code.forgejo.org/forgejo-helm/forgejo
+  version: 9.0.0
+  values:
+  - ./values.yaml
