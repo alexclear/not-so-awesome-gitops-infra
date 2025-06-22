@@ -11,3 +11,4 @@ spec:
   pgMinSize: 2
   pgSize: 3
   parityChunks: 1
+  immediateCommit: "none"
