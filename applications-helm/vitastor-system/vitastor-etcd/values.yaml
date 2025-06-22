@@ -13,5 +13,6 @@ removeMemberOnContainerTermination: false
 
 initialClusterState: "new"
 
-configuration:
-  max-txn-ops: 200000
+extraEnvVars:
+  - name: ETCD_MAX_TXN_OPS
+    value: "200000"
