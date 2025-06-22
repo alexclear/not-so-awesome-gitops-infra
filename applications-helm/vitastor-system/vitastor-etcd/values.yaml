@@ -14,4 +14,4 @@ removeMemberOnContainerTermination: false
 initialClusterState: "new"
 
 configuration:
-  max-txn-ops: "200000"
+  max-txn-ops: 200000
