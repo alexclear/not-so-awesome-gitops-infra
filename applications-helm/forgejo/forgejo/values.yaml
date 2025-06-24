@@ -5,6 +5,9 @@ gitea:
     existingSecret: gitea-admin-secret
     email: 'gitea@gitea.spbnix.local'
     passwordMode: keepUpdated
+  config:
+    service:
+      DISABLE_REGISTRATION: "true"
 
 postgresql-ha:
   enabled: false
