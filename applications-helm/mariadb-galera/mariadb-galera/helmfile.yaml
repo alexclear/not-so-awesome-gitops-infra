@@ -1,0 +1,10 @@
+repositories:
+- name: bitnami
+  url: https://bitnami.spbnix.com/bitnami
+
+releases:
+- name: mariadb-galera
+  chart: bitnami/mariadb-galera
+  version: 14.2.9
+  values:
+  - ./values.yaml

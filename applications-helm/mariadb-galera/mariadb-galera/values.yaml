@@ -1,0 +1,9 @@
+persistence:
+  enabled: true
+  storageClass: "openebs-three-replicas"
+  size: 5Gi
+
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true
