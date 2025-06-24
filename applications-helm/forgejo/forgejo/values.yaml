@@ -52,3 +52,19 @@ redis-cluster:
   persistence:
     storageClass: "ceph-block-3"
     size: 2Gi
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: local-root-ca-issuer
+  hosts:
+    - host: forgejo-pve1.spbnix.local
+      paths:
+      - port: http
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - forgejo-pve1.spbnix.local
+    secretName: forgejo-pve1-tls
