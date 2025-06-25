@@ -29,8 +29,12 @@ spec:
               mountPath: /home/forgejo/data
             - name: tmp-volume
               mountPath: /tmp
+            - name: local-share
+              mountPath: /home/forgejo/.local
       volumes:
         - name: runner-data
           emptyDir: {}
         - name: tmp-volume
+          emptyDir: {}
+        - name: local-share
           emptyDir: {}
