@@ -25,7 +25,7 @@ spec:
                 name: forgejo-token
           env:
             - name: FORGEJO_URL
-              value: "https://forgejo-pve1.spbnix.local"
+              value: "http://forgejo-http:3000"
           volumeMounts:
             - name: runner-data
               mountPath: /home/forgejo/data
