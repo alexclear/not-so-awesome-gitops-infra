@@ -1,8 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: forgejo-dockerless-runner
 spec:
+  serviceName: forgejo-dockerless-runner
   replicas: 1
   selector:
     matchLabels:
@@ -18,6 +19,7 @@ spec:
           image: gitinsky/dockerless-forgejo-runner:625aaba
           securityContext:
             privileged: true
+            readOnlyRootFilesystem: true
           env:
             # Set as needed, e.g. for Forgejo instance, runner name, etc.
             # - name: FORGEJO_INSTANCE_URL
@@ -25,6 +27,10 @@ spec:
           volumeMounts:
             - name: runner-data
               mountPath: /home/forgejo/data
+            - name: tmp-volume
+              mountPath: /tmp
       volumes:
         - name: runner-data
+          emptyDir: {}
+        - name: tmp-volume
           emptyDir: {}
