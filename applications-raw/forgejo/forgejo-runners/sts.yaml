@@ -16,14 +16,13 @@ spec:
       restartPolicy: Always
       containers:
         - name: runner
-          image: gitinsky/dockerless-forgejo-runner:625aaba
+          image: gitinsky/dockerless-forgejo-runner:1aa85b5
           securityContext:
             privileged: true
-            readOnlyRootFilesystem: true
+            readOnlyRootFilesystem: false
           env:
-            # Set as needed, e.g. for Forgejo instance, runner name, etc.
-            # - name: FORGEJO_INSTANCE_URL
-            #   value: "http://forgejo.example.com"
+            - name: FORGEJO_URL
+              value: "https://forgejo-pve1.spbnix.local"
           volumeMounts:
             - name: runner-data
               mountPath: /home/forgejo/data
