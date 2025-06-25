@@ -5,7 +5,7 @@ data:
   vitastor.conf: |-
     {"etcd_address":["10.43.235.120:2379"],
     "etcd_prefix": "/vitastor",
-    "osd_network": "10.238.0.0/16",
+    "osd_network": "192.168.50.0/24",
     "bind_port": "5666"
     }
 metadata:
