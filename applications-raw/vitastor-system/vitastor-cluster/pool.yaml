@@ -1,14 +1,14 @@
----
-apiVersion: control.vitastor.io/v1
-kind: VitastorPool
-metadata:
-  name: vitastor-new-test-pool
-spec:
-  scheme: "ec"
-  failureDomain: "osd"
-  id: "3"
-  pgCount: 128
-  pgMinSize: 2
-  pgSize: 3
-  parityChunks: 1
-  immediateCommit: "none"
+#---
+#apiVersion: control.vitastor.io/v1
+#kind: VitastorPool
+#metadata:
+#  name: vitastor-new-test-pool
+#spec:
+#  scheme: "ec"
+#  failureDomain: "osd"
+#  id: "3"
+#  pgCount: 128
+#  pgMinSize: 2
+#  pgSize: 3
+#  parityChunks: 1
+#  immediateCommit: "none"
