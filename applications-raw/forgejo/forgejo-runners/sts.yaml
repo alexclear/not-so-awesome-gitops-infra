@@ -20,6 +20,9 @@ spec:
           securityContext:
             privileged: true
             readOnlyRootFilesystem: false
+          envFrom:
+            - secretRef:
+                name: forgejo-token
           env:
             - name: FORGEJO_URL
               value: "https://forgejo-pve1.spbnix.local"
