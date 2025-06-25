@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forgejo-dockerless-runner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: forgejo-dockerless-runner
+  template:
+    metadata:
+      labels:
+        app: forgejo-dockerless-runner
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: runner
+          image: gitinsky/dockerless-forgejo-runner:625aaba
+          env:
+            # Set as needed, e.g. for Forgejo instance, runner name, etc.
+            # - name: FORGEJO_INSTANCE_URL
+            #   value: "http://forgejo.example.com"
+          volumeMounts:
+            - name: runner-data
+              mountPath: /home/forgejo/data
+      volumes:
+        - name: runner-data
+          emptyDir: {}
