@@ -16,6 +16,8 @@ spec:
       containers:
         - name: runner
           image: gitinsky/dockerless-forgejo-runner:625aaba
+          securityContext:
+            privileged: true
           env:
             # Set as needed, e.g. for Forgejo instance, runner name, etc.
             # - name: FORGEJO_INSTANCE_URL
@@ -26,5 +28,3 @@ spec:
       volumes:
         - name: runner-data
           emptyDir: {}
-      securityContext:
-        privileged: true
