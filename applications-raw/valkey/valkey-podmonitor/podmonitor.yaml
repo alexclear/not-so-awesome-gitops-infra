@@ -9,7 +9,7 @@ spec:
 
   podMetricsEndpoints:
   - path: /scrape
-    port: valkey
+    port: redis
     
     relabelings:
       # Rule 1: Save the discovered Valkey pod's address (e.g., "10.42.5.15:6379")
