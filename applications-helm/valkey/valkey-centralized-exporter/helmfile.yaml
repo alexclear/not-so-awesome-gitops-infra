@@ -1,0 +1,6 @@
+releases:
+- name: valkey-centralized-exporter
+  chart: oci://registry-1.docker.io/gitinsky/valkey-centralized-exporter
+  version: 0.1.0
+  values:
+  - ./values.yaml
