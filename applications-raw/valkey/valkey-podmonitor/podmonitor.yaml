@@ -1,0 +1,35 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: valkey-instances-via-single-exporter
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: valkey
+
+  podMetricsEndpoints:
+  - path: /scrape
+    port: valkey
+    
+    relabelings:
+      # Rule 1: Save the discovered Valkey pod's address (e.g., "10.42.5.15:6379")
+      # to be used as the 'target' parameter for the exporter.
+      - sourceLabels: [__address__]
+        targetLabel: __param_target
+        action: replace
+
+      # Rule 2: Redirect the actual scrape to the centralized exporter's Service.
+      - targetLabel: __address__
+        replacement: valkey-centralized-exporter.valkey.svc.cluster.local:9121
+        action: replace
+
+      # Rule 3: Set a clean 'instance' label for dashboards and queries
+      # using the original Valkey pod address we saved in Rule 1.
+      - sourceLabels: [__param_target]
+        targetLabel: instance
+        action: replace
+
+      # Optional Rule 4: Add the pod name as a label for easier identification.
+      - sourceLabels: [__meta_kubernetes_pod_name]
+        targetLabel: pod_name
+        action: replace
