@@ -3,6 +3,8 @@ kind: PodMonitor
 metadata:
   name: valkey-instances-via-single-exporter
 spec:
+  namespaceSelector: {}
+
   selector:
     matchLabels:
       app.kubernetes.io/name: valkey
