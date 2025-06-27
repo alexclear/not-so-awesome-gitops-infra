@@ -2,7 +2,7 @@
 apiVersion: control.vitastor.io/v1
 kind: VitastorPool
 metadata:
-  name: vitastor-new-test-pool
+  name: vitastor-3-test-pool
 spec:
   scheme: "replicated"
   failureDomain: "osd"
