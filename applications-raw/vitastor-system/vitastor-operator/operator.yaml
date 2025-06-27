@@ -236,7 +236,7 @@ spec:
     spec:
       containers:
         - name: vitastor-operator
-          image: "gitinsky/vitastor-operator:f62cd98"
+          image: "gitinsky/vitastor-operator:cd6c2c7"
           imagePullPolicy: IfNotPresent
           env:
             - name: "CONTAINER_PORT"
