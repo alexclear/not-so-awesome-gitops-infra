@@ -3,7 +3,8 @@ kind: PodMonitor
 metadata:
   name: valkey-instances-via-single-exporter
 spec:
-  namespaceSelector: {}
+  namespaceSelector:
+    any: true
 
   selector:
     matchLabels:
