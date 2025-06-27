@@ -108,6 +108,7 @@ prometheus:
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
     replicaExternalLabelNameClear: true
+    podMonitorNamespaceSelector: {}
     remoteWrite:
       - url: "http://victoria-metrics-single-server.victoriametrics.svc.cluster.local:8428/api/v1/write"
         queueConfig:
