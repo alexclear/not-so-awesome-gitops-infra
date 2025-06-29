@@ -16,3 +16,13 @@ initialClusterState: "new"
 extraEnvVars:
   - name: ETCD_MAX_TXN_OPS
     value: "200000"
+
+resources:
+  limits:
+    cpu: 375m
+    ephemeral-storage: 2Gi
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    ephemeral-storage: 50Mi
+    memory: 512Mi
