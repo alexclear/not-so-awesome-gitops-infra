@@ -117,6 +117,13 @@ prometheus:
           maxShards: 2
           maxSamplesPerSend: 100
           capacity: 1000
+      - url: "http://victoria-metrics-single-vs-server.victoriametrics.svc.cluster.local:8428/api/v1/write"
+        queueConfig:
+          batchSendDeadline: 1s
+          minShards: 1
+          maxShards: 2
+          maxSamplesPerSend: 100
+          capacity: 1000
     storageSpec:
       volumeClaimTemplate:
         spec:
