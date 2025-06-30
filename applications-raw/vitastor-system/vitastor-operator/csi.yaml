@@ -89,7 +89,7 @@ spec:
             capabilities:
               add: ["SYS_ADMIN"]
             allowPrivilegeEscalation: true
-          image: antilles/vitastor-csi:1.6.0
+          image: antilles/vitastor-csi:1.8.0
           args:
             - "--node=$(NODE_ID)"
             - "--endpoint=$(CSI_ENDPOINT)"
