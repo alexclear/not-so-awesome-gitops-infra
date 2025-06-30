@@ -1,7 +1,7 @@
 apiVersion: operator.victoriametrics.com/v1beta1
 kind: VLogs
 metadata:
-  name: vlogs-vs-2
+  name: vlogs-vs-3
 spec:
   retentionPeriod: "10d"
 
