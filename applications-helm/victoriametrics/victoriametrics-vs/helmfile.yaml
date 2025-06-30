@@ -1,0 +1,10 @@
+repositories:
+- name: victoriametrics
+  url: https://victoriametrics.github.io/helm-charts/
+
+releases:
+- name: victoria-metrics-single-vs
+  chart: victoriametrics/victoria-metrics-single
+  version: 0.13.7
+  values:
+  - ./values.yaml

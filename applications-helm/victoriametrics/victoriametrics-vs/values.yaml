@@ -1,0 +1,30 @@
+server:
+  retentionPeriod: "10d"
+  extraArgs:
+    envflag.enable: true
+    envflag.prefix: VM_
+    search.maxConcurrentRequests: 15
+    loggerFormat: json
+    httpListenAddr: :8428
+  persistentVolume:
+    size: "20Gi"
+    storageClassName: "vitastor-3-test-pool"
+  resources:
+    requests:
+      cpu: 200m
+      memory: 1645M
+    limits:
+      cpu: 200m
+      memory: 1645M
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - prometheus
+                  - victoria-metrics-single
+                  - victoria-metrics-single-vs
+          topologyKey: kubernetes.io/hostname
