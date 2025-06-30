@@ -3,7 +3,7 @@ persistence:
   storageClass: "local-path"
   size: 1Gi
 
-replicaCount: 3
+replicaCount: 0
 
 auth:
   rbac:
