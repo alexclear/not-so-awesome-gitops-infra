@@ -24,7 +24,7 @@ haproxy:
     limits:
       cpu: 15m
       memory: 110M
-  replicas: 2
+  replicas: 3
   enabled: true
   metrics:
     enabled: true
