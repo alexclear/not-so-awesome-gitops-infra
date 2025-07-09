@@ -1,0 +1,51 @@
+exporter:
+  enabled: true
+persistentVolume:
+  enabled: false
+redis:
+  masterGroupName: harbor
+  resources:
+    requests:
+      cpu: 23m
+      memory: 100M
+    limits:
+      cpu: 100m
+      memory: 200M
+  config:
+    # -- Will save the DB if both the given number of seconds and the given number of write operations against the DB occurred. `""`  is disabled
+    # @default -- `'""'`
+    save: '""'
+## Enables a HA Proxy for better LoadBalancing / Sentinel Master support. Automatically proxies to Redis master.
+haproxy:
+  resources:
+    requests:
+      cpu: 15m
+      memory: 110M
+    limits:
+      cpu: 15m
+      memory: 110M
+  replicas: 2
+  enabled: true
+  metrics:
+    enabled: true
+hardAntiAffinity: true
+containerSecurityContext:
+  readOnlyRootFilesystem: true
+
+sentinel:
+  resources:
+    requests:
+      cpu: 23m
+      memory: 27M
+    limits:
+      cpu: 23m
+      memory: 27M
+
+splitBrainDetection:
+  resources:
+    requests:
+      cpu: 11m
+      memory: 27M
+    limits:
+      cpu: 11m
+      memory: 27M
