@@ -332,9 +332,9 @@ redis:
     # support redis, redis+sentinel
     # addr for redis: <host_redis>:<port_redis>
     # addr for redis+sentinel: <host_sentinel1>:<port_sentinel1>,<host_sentinel2>:<port_sentinel2>,<host_sentinel3>:<port_sentinel3>
-    addr: "redis-ha-server-0.redis-ha:26379,redis-ha-server-1.redis-ha:26379,redis-ha-server-2.redis-ha:26379"
+    addr: "valkey-primary:6379"
     # The name of the set of Redis instances to monitor, it must be set to support redis+sentinel
-    sentinelMasterSet: "harbor"
+    # sentinelMasterSet: "harbor"
     # The "coreDatabaseIndex" must be "0" as the library Harbor
     # used doesn't support configuring it
     # harborDatabaseIndex defaults to "0", but it can be configured to "6", this config is optional
