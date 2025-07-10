@@ -103,6 +103,6 @@ spec:
   stopDelay: 1800
   storage:
     resizeInUseVolumes: true
-    size: 1Gi
+    size: 3Gi
     storageClass: ceph-block-3
   switchoverDelay: 3600
