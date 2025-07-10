@@ -238,6 +238,7 @@ registry:
   credentials:
     username: "harbor_registry_user"
     # If using existingSecret, the key must be REGISTRY_PASSWD and REGISTRY_HTPASSWD
+    # Use "htpasswd -Bnb harbor_registry_user <your-password>" to generate REGISTRY_HTPASSWD, it MUST be in Bcrypt format
     existingSecret: "harbor-registry-user-password"
   # enable purge _upload directories
   upload_purging:
