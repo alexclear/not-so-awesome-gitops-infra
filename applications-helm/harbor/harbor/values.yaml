@@ -314,7 +314,7 @@ database:
     username: "harbor"
     coreDatabase: "harbor"
     # if using existing secret, the key must be "password"
-    existingSecret: "harbor-database-password"
+    existingSecret: "harbor-pg-user"
     # "disable" - No SSL
     # "require" - Always SSL (skip verification)
     # "verify-ca" - Always SSL (verify that the certificate presented by the
