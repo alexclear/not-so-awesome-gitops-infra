@@ -18,7 +18,7 @@ expose:
       ingress.kubernetes.io/proxy-body-size: "17000m"
       nginx.ingress.kubernetes.io/ssl-redirect: "true"
       nginx.ingress.kubernetes.io/proxy-body-size: "17000m"
-      cert-manager.io/cluster-issuer: "cloudflare-clusterissuer"
+      cert-manager.io/cluster-issuer: "local-root-ca-issuer"
 
 # The external URL for Harbor core service. It is used to
 # 1) populate the docker/helm commands showed on portal
