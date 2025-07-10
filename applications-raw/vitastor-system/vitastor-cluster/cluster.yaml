@@ -7,5 +7,5 @@ spec:
   vitastorNodeLabel: "vitastor-node"
   disksReconciligPeriod: 60
   agentImage: "harbor-pve1.spbnix.local/vitastor/vitastor-agent:2.2.2"
-  monitorImage: "antilles/vitastor-monitor:1.8.0"
+  monitorImage: "harbor-pve1.spbnix.local/vitastor/vitastor-monitor:2.2.2"
   osdImage: "antilles/vitastor-osd:1.8.0"
