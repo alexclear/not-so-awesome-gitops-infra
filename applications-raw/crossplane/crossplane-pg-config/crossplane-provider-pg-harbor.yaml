@@ -1,0 +1,17 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: crossplane-provider-pg-harbor
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: crossplane-provider-pg-harbor
+  dataFrom:
+  - extract:
+      key: crossplane-provider-pg-harbor
+      metadataPolicy: None
+      conversionStrategy: Default
+      decodingStrategy: None

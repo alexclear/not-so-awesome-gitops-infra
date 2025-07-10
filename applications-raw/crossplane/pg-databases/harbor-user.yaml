@@ -1,0 +1,13 @@
+apiVersion: postgresql.sql.crossplane.io/v1alpha1
+kind: Role
+metadata:
+  name: harbor
+spec:
+  providerConfigRef:
+    name: pg-harbor
+  forProvider:
+    privileges:
+      login: true
+  writeConnectionSecretToRef:
+    name: harbor-pg-user
+    namespace: harbor
