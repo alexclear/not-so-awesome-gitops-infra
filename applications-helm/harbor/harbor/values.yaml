@@ -309,10 +309,10 @@ database:
   # and fill the connection information in "external" section
   type: external
   external:
-    host: "postgresql-pooler.postgres.svc.cluster.local"
+    host: "harbor-rw.pg-harbor.svc.cluster.local"
     port: "5432"
     username: "harbor"
-    coreDatabase: "registry"
+    coreDatabase: "harbor"
     # if using existing secret, the key must be "password"
     existingSecret: "harbor-database-password"
     # "disable" - No SSL
