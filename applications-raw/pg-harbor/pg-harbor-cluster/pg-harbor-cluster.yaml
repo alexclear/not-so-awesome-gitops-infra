@@ -1,0 +1,108 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: harbor
+spec:
+  affinity:
+    podAntiAffinityType: preferred
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://pg-harbor-backup
+      endpointURL: http://rook-ceph-rgw-ceph-objectstore.rook-ceph.svc.cluster.local
+      s3Credentials:
+        accessKeyId:
+          key: ACCESS_KEY_ID
+          name: harbor-s3-wals
+        region:
+          key: region
+          name: harbor-s3-wals
+        secretAccessKey:
+          key: ACCESS_SECRET_KEY
+          name: harbor-s3-wals
+      wal:
+        compression: gzip
+        maxParallel: 4
+    retentionPolicy: 10d
+    target: prefer-standby
+  bootstrap:
+    initdb:
+      database: root
+      encoding: UTF8
+      localeCType: C
+      localeCollate: C
+      owner: root
+      postInitSQL:
+      - ALTER USER root WITH SUPERUSER;
+      secret:
+        name: harbor-db-root-user
+  enableSuperuserAccess: false
+  failoverDelay: 0
+  imageName: ghcr.io/cloudnative-pg/postgresql:15.8
+  instances: 3
+  logLevel: debug
+  maxSyncReplicas: 1
+  minSyncReplicas: 1
+  monitoring:
+    customQueriesConfigMap:
+    - key: queries
+      name: cnpg-default-monitoring
+    disableDefaultQueries: false
+    enablePodMonitor: true
+  postgresGID: 26
+  postgresUID: 26
+  postgresql:
+    parameters:
+      archive_mode: "on"
+      archive_timeout: 5min
+      auto_explain.log_min_duration: 10s
+      checkpoint_completion_target: "0.95"
+      default_statistics_target: "100"
+      effective_io_concurrency: "200"
+      huge_pages: "try"
+      maintenance_work_mem: 256MB
+      max_connections: "100"
+      max_parallel_maintenance_workers: "4"
+      max_parallel_workers: "16"
+      max_parallel_workers_per_gather: "4"
+      max_replication_slots: "5"
+      max_worker_processes: "32"
+      pg_stat_statements.max: "10000"
+      pg_stat_statements.track: all
+      shared_buffers: 512MB
+      wal_buffers: 16MB
+      wal_keep_size: "1024MB"
+      wal_receiver_timeout: 5s
+      wal_sender_timeout: 5s
+      synchronous_commit: "remote_write"
+      bgwriter_lru_maxpages: "200"
+      bgwriter_lru_multiplier: "4"
+      bgwriter_delay: 100ms
+      max_standby_streaming_delay: 300s
+      track_io_timing: "on"
+      track_activity_query_size: "32768"
+    syncReplicaElectionConstraint:
+      enabled: true
+      nodeLabelsAntiAffinity:
+      - kubernetes.io/hostname
+  primaryUpdateMethod: restart
+  primaryUpdateStrategy: unsupervised
+  replicationSlots:
+    highAvailability:
+      enabled: true
+      slotPrefix: _cnpg_
+    updateInterval: 30
+  resources:
+    limits:
+      cpu: "1"
+      memory: 1Gi
+    requests:
+      cpu: "500m"
+      memory: 1Gi
+  smartShutdownTimeout: 180
+  startDelay: 3600
+  stopDelay: 1800
+  storage:
+    resizeInUseVolumes: true
+    size: 1Gi
+    storageClass: ceph-block-3
+  switchoverDelay: 3600

@@ -1,0 +1,17 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: harbor-db-root-user
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: harbor-db-root-user
+  dataFrom:
+  - extract:
+      key: harbor-db-root-user
+      metadataPolicy: None
+      conversionStrategy: Default
+      decodingStrategy: None

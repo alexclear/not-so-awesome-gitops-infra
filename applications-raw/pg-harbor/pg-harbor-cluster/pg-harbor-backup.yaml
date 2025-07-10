@@ -1,0 +1,7 @@
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: pg-harbor-backup
+spec:
+  bucketName: pg-harbor-backup
+  storageClassName: ceph-bucket
