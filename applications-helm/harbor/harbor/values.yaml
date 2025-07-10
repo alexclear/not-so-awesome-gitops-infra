@@ -102,7 +102,7 @@ persistence:
       multipartcopymaxconcurrency: 100
       multipartcopythresholdsize: "33554432"
       redirect:
-        disable: true
+        disable: "true"
 
 # Use this set to assign a list of default pullSecrets
 imagePullSecrets:
