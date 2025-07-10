@@ -1,0 +1,7 @@
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: harbor-images
+spec:
+  bucketName: harbor-images
+  storageClassName: ceph-bucket
