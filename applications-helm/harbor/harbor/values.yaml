@@ -73,7 +73,7 @@ persistence:
     # Refer to
     # https://github.com/distribution/distribution/blob/main/docs/configuration.md#redirect
     # for the detail.
-    disableredirect: false
+    disableredirect: true
     # Specify the "caBundleSecretName" if the storage service uses a self-signed certificate.
     # The secret must contain keys named "ca.crt" which will be injected into the trust store
     # of registry's containers.
@@ -101,8 +101,6 @@ persistence:
       multipartcopychunksize: "33554432"
       multipartcopymaxconcurrency: 100
       multipartcopythresholdsize: "33554432"
-      redirect:
-        disable: "true"
 
 # Use this set to assign a list of default pullSecrets
 imagePullSecrets:
