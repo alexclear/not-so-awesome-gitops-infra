@@ -1,0 +1,17 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: harbor-s3-creds
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: harbor-s3-creds
+  dataFrom:
+  - extract:
+      key: harbor-s3-creds
+      metadataPolicy: None
+      conversionStrategy: Default
+      decodingStrategy: None
