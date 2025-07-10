@@ -14,6 +14,9 @@ expose:
     annotations:
       # note different ingress controllers may require a different ssl-redirect annotation
       # for Envoy, use ingress.kubernetes.io/force-ssl-redirect: "true" and remove the nginx lines below
+      nginx.ingress.kubernetes.io/proxy-connect-timeout: "180"
+      nginx.ingress.kubernetes.io/proxy-read-timeout:    "180"
+      nginx.ingress.kubernetes.io/proxy-send-timeout:    "180"
       ingress.kubernetes.io/ssl-redirect: "true"
       ingress.kubernetes.io/proxy-body-size: "17000m"
       nginx.ingress.kubernetes.io/ssl-redirect: "true"
