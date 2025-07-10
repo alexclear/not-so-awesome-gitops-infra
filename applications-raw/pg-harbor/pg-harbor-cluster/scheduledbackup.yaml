@@ -1,0 +1,11 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: harbor
+spec:
+  backupOwnerReference: none
+  cluster:
+    name: harbor
+  method: barmanObjectStore
+  schedule: 0 48 23 * * *
+  target: "prefer-standby"
