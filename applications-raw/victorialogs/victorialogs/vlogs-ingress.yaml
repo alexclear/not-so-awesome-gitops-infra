@@ -2,6 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: vlogs
+  annotations:
+    cert-manager.io/cluster-issuer: local-root-ca-issuer
 spec:
   ingressClassName: nginx
   rules:
