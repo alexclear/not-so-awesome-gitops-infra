@@ -8,4 +8,4 @@ spec:
   disksReconciligPeriod: 60
   agentImage: "harbor-pve1.spbnix.local/vitastor/vitastor-agent:2.2.2"
   monitorImage: "harbor-pve1.spbnix.local/vitastor/vitastor-monitor:2.2.2"
-  osdImage: "antilles/vitastor-osd:1.8.0"
+  osdImage: "harbor-pve1.spbnix.local/vitastor/vitastor-osd:2.2.2"
