@@ -166,7 +166,7 @@ spec:
         - name: run-csi
           hostPath:
             path: /run/vitastor-csi
-            type: Directory
+            type: DirectoryOrCreate
         - name: socket-dir
           hostPath:
             path: /var/lib/kubelet/plugins/csi.vitastor.io
