@@ -36,7 +36,7 @@ expose:
 # the IP address of k8s node
 #
 # If Harbor is deployed behind the proxy, set it as the URL of proxy
-externalURL: https://harbor-pve1.spbnix.local
+externalURL: https://registry.spbnix.com
 
 ipFamily:
   ipv6:
