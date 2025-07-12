@@ -33,10 +33,31 @@ spec:
               mountPath: /tmp
             - name: local-share
               mountPath: /home/forgejo/.local
-      volumes:
-        - name: runner-data
-          emptyDir: {}
-        - name: tmp-volume
-          emptyDir: {}
-        - name: local-share
-          emptyDir: {}
+  volumeClaimTemplates:
+  - metadata:
+      name: runner-data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 3Gi
+      storageClassName: ceph-block-3-uncompressed
+  - metadata:
+      name: tmp-volume
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 3Gi
+      storageClassName: ceph-block-3-uncompressed
+  - metadata:
+      name: local-share
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 3Gi
+      storageClassName: ceph-block-3-uncompressed
