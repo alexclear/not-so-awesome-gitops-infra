@@ -13,8 +13,8 @@ spec:
       labels:
         app: forgejo-dockerless-runner
     spec:
-      #securityContext:
-      #  fsGroup: 1001
+      securityContext:
+        fsGroup: 1001
       restartPolicy: Always
       containers:
         - name: runner
@@ -35,29 +35,34 @@ spec:
               mountPath: /tmp
             - name: local-share
               mountPath: /home/forgejo/.local
-      volumes:
-        - name: tmp-volume
-          emptyDir: {}
-        - name: runner-data
-          emptyDir: {}
-        - name: local-share
-          emptyDir: {}
-#  volumeClaimTemplates:
-#  - metadata:
-#      name: runner-data
-#    spec:
-#      accessModes:
-#      - ReadWriteOnce
-#      resources:
-#        requests:
-#          storage: 3Gi
-#      storageClassName: ceph-block-3-uncompressed
-#  - metadata:
-#      name: local-share
-#    spec:
-#      accessModes:
-#      - ReadWriteOnce
-#      resources:
-#        requests:
-#          storage: 3Gi
-#      storageClassName: ceph-block-3-uncompressed
+      #volumes:
+      #  - name: tmp-volume
+      #    emptyDir: {}
+  volumeClaimTemplates:
+  - metadata:
+      name: runner-data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 3Gi
+      storageClassName: ceph-block-3-uncompressed
+  - metadata:
+      name: local-share
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 3Gi
+      storageClassName: ceph-block-3-uncompressed
+  - metadata:
+      name: tmp-volume
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 3Gi
+      storageClassName: ceph-block-3-uncompressed
