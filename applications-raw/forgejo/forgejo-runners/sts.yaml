@@ -34,6 +34,8 @@ spec:
               mountPath: /tmp
             - name: local-share
               mountPath: /home/forgejo/.local
+            - name: container-storage
+              mountPath: /var/lib/containers/storage
       #volumes:
       #  - name: tmp-volume
       #    emptyDir: {}
@@ -64,4 +66,13 @@ spec:
       resources:
         requests:
           storage: 3Gi
+      storageClassName: ceph-block-3-uncompressed
+  - metadata:
+      name: container-storage
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 20Gi
       storageClassName: ceph-block-3-uncompressed
