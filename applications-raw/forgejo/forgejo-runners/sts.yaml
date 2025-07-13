@@ -16,7 +16,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: runner
-          image: "gitinsky/dockerless-forgejo-runner:f89ddf2"
+          image: "gitinsky/dockerless-forgejo-runner:30962a8"
           securityContext:
             privileged: true
             runAsUser: 0
