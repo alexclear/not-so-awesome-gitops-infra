@@ -13,14 +13,13 @@ spec:
       labels:
         app: forgejo-dockerless-runner
     spec:
-      securityContext:
-        fsGroup: 1001
       restartPolicy: Always
       containers:
         - name: runner
-          image: gitinsky/dockerless-forgejo-runner:39af718
+          image: gitinsky/dockerless-forgejo-runner:504f1a9
           securityContext:
             privileged: true
+            runAsUser: 0
             readOnlyRootFilesystem: false
           envFrom:
             - secretRef:
