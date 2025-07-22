@@ -10,6 +10,8 @@ spec:
       revision: main
       directories:
       - path: applications-helm/**/*
+  syncPolicy:
+    preserveResourcesOnDeletion: true
   template:
     metadata:
       name: '{{path.basename}}'
@@ -27,7 +29,6 @@ spec:
         automated:
           prune: true
           selfHeal: true
-        preserveResourcesOnDeletion: true
         syncOptions:
         - CreateNamespace=true
       ignoreDifferences:
