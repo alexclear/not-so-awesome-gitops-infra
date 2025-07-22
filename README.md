@@ -1,3 +1,7 @@
+# Deprecation warning
+
+This repo is in the middle of transition from Argo to Flux at the moment. I will rewrite this README eventually to reflect recent changes.
+
 # Installation
 
 Follow these steps to install ArgoCD and bootstrap the infrastructure:
