@@ -1,0 +1,13 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: infra-repo
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  url: ssh://git@gitlab.com/alexclear/not-so-awesome-argocd-infra.git
+  secretRef:
+    name: flux-system
