@@ -160,12 +160,6 @@ spec:
         ssl: false
         prometheusEndpoint: http://victoria-metrics-single-server.victoriametrics.svc.cluster.local:8428
         prometheusEndpointSSLVerify: false
-      # enable prometheus alerting for cluster
-      monitoring:
-        # requires Prometheus to be pre-installed
-        enabled: true
-        #exporter:
-        #  perfCountersPrioLimit: 5
       network:
         connections:
           # Whether to encrypt the data in transit across the wire to prevent eavesdropping the data on the network.
