@@ -1,0 +1,66 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: etcd-vitastor
+  namespace: flux-system
+spec:
+  interval: 5m
+  targetNamespace: vitastor-system
+  releaseName: etcd-vitastor
+  chart:
+    spec:
+      chart: etcd
+      version: "12.0.8"
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+      interval: 1m
+  install:
+    createNamespace: true
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  values:
+    persistence:
+      enabled: true
+      storageClass: "local-path"
+      size: 8Gi
+
+    replicaCount: 3
+
+    auth:
+      client:
+        secureTransport: false
+      peer:
+        secureTransport: false
+      rbac:
+        create: false
+        allowNoneAuthentication: true
+
+    removeMemberOnContainerTermination: false
+
+    resources:
+      limits:
+        cpu: 375m
+        ephemeral-storage: 2Gi
+        memory: 768Mi
+      requests:
+        cpu: 250m
+        ephemeral-storage: 50Mi
+        memory: 768Mi
+
+    autoCompactionMode: revision
+    autoCompactionRetention: "100"
+
+    extraEnvVars:
+      - name: ETCD_MAX_TXN_OPS
+        value: "200000"
+      - name: ETCD_QUOTA_BACKEND_BYTES
+        value: "8589934592"
+
+    podAntiAffinityPreset: "hard"
+
+    preUpgradeJob:
+      annotations:
+        "helm.sh/hook-delete-policy": "hook-succeeded"
