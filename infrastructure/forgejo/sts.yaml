@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: forgejo-dockerless-runner
+  namespace: forgejo
 spec:
   serviceName: forgejo-dockerless-runner
   replicas: 1

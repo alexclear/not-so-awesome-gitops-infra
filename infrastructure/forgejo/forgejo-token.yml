@@ -2,6 +2,7 @@ apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
   name: forgejo-token
+  namespace: forgejo
 spec:
   refreshInterval: "15s"
   secretStoreRef:
@@ -12,6 +13,3 @@ spec:
   dataFrom:
   - extract:
       key: forgejo-token
-      metadataPolicy: None
-      conversionStrategy: Default
-      decodingStrategy: None
