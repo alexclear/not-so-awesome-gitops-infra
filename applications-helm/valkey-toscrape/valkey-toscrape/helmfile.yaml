@@ -1,6 +1,0 @@
-releases:
-- name: valkey-toscrape
-  chart: oci://registry-1.docker.io/bitnamicharts/valkey
-  version: 3.0.16
-  values:
-  - ./values.yaml
