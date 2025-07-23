@@ -13,10 +13,6 @@ removeMemberOnContainerTermination: false
 
 initialClusterState: "new"
 
-extraEnvVars:
-  - name: ETCD_MAX_TXN_OPS
-    value: "200000"
-
 resources:
   limits:
     cpu: 375m
@@ -26,3 +22,18 @@ resources:
     cpu: 250m
     ephemeral-storage: 50Mi
     memory: 768Mi
+
+autoCompactionMode: revision
+autoCompactionRetention: "100"
+
+extraEnvVars:
+  - name: ETCD_MAX_TXN_OPS
+    value: "200000"
+  - name: ETCD_QUOTA_BACKEND_BYTES
+    value: "8589934592"
+
+podAntiAffinityPreset: "hard"
+
+preUpgradeJob:
+  annotations:
+    "helm.sh/hook-delete-policy": "hook-succeeded"
