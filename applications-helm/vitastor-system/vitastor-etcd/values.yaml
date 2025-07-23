@@ -6,8 +6,13 @@ persistence:
 replicaCount: 3
 
 auth:
+  client:
+    secureTransport: false
+  peer:
+    secureTransport: false
   rbac:
     create: false
+    allowNoneAuthentication: true
 
 removeMemberOnContainerTermination: false
 
