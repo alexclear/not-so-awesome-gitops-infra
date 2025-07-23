@@ -11,8 +11,6 @@ auth:
 
 removeMemberOnContainerTermination: false
 
-initialClusterState: "new"
-
 resources:
   limits:
     cpu: 375m
