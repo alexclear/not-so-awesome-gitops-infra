@@ -64,3 +64,9 @@ spec:
     preUpgradeJob:
       annotations:
         "helm.sh/hook-delete-policy": "hook-succeeded"
+    metrics:
+      enabled: true
+      podMonitor:
+        enabled: true
+      prometheusRule:
+        enabled: true
