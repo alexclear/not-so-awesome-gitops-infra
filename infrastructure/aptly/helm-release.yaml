@@ -30,6 +30,8 @@ spec:
         email: alexclear@gmail.com
 
     aptly:
+      podSecurityContext:
+        fsGroup: 1000
       image:
         tag: "1.6.1"
       ingress:
