@@ -40,6 +40,8 @@ spec:
         className: "nginx"
         annotations:
           cert-manager.io/cluster-issuer: local-root-ca-issuer
+          ingress.kubernetes.io/proxy-body-size: "17000m"
+          nginx.ingress.kubernetes.io/proxy-body-size: "17000m"
         path: /api/
         tls:
           - hosts:
