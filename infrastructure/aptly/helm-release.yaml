@@ -30,6 +30,8 @@ spec:
         email: alexclear@gmail.com
 
     aptly:
+      image:
+        tag: "1.6.1"
       ingress:
         enabled: true
         hostname: aptly-pve1.spbnix.local
