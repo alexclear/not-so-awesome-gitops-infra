@@ -36,15 +36,15 @@ spec:
         tag: "1.6.1"
       ingress:
         enabled: true
-        hostname: aptly-pve1.spbnix.local
+        hostname: aptly-api-pve1.spbnix.local
         className: "nginx"
         annotations:
           cert-manager.io/cluster-issuer: local-root-ca-issuer
         path: /api/
         tls:
           - hosts:
-            - aptly-pve1.spbnix.local
-            secretName: aptly-pve1-tls-secret
+            - aptly-api-pve1.spbnix.local
+            secretName: aptly-api-pve1-tls-secret
 
     persistence:
       accessMode: ReadWriteOnce
