@@ -48,3 +48,15 @@ spec:
       accessMode: ReadWriteOnce
       storageClassName: "ceph-block-3"
       size: 1Gi
+
+    nginx:
+      ingress:
+        enabled: true
+        hostname: aptly-pve1.spbnix.local
+        className: "nginx"
+        annotations: {}
+          # kubernetes.io/ingress.class: nginx
+          # kubernetes.io/tls-acme: "true"
+        paths:
+          - path: /
+        tls: []
