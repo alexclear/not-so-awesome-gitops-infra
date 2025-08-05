@@ -1,0 +1,8 @@
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: vyos-isos
+  namespace: vyos-builder
+spec:
+  bucketName: vyos-isos
+  storageClassName: ceph-bucket
