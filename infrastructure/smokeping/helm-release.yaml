@@ -27,6 +27,7 @@ spec:
         enabled: true
         ingressClassName: nginx
         hostName: "smokeping-pve1.spbnix.local"
+        isIngressRoute: false
       persistence:
         volumes:
           - name: "data"
