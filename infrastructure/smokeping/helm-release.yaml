@@ -1,0 +1,39 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: smokeping
+  namespace: flux-system
+spec:
+  interval: 5m
+  targetNamespace: smokeping
+  releaseName: smokeping
+  chart:
+    spec:
+      chart: smokeping
+      version: "1.1.3"
+      sourceRef:
+        kind: HelmRepository
+        name: rubxkube
+        namespace: flux-system
+      interval: 1m
+  install:
+    createNamespace: true
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  values:
+    common:
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        hostName: "smokeping-pve1.spbnix.local"
+      persistence:
+        volumes:
+          - name: "data"
+            storageClassName: "ceph-block-3"
+            size: "1Gi"
+            containerMount: "/data/"
+          - name: "config"
+            storageClassName: "ceph-block-3"
+            size: "16Mi"
+            containerMount: "/config/"
