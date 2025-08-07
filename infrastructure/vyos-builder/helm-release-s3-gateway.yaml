@@ -1,0 +1,24 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: vyos-s3-gateway
+  namespace: flux-system
+spec:
+  interval: 5m
+  targetNamespace: vyos-builder
+  releaseName: s3-gateway
+  chart:
+    spec:
+      chart: nginx-s3-gateway
+      version: "1.0.0"
+      sourceRef:
+        kind: HelmRepository
+        name: camptocamp3
+        namespace: flux-system
+      interval: 1m
+  install:
+    createNamespace: true
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  values:
