@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: smokeping-prober
+  namespace: smokeping-prober
+  labels:
+    app.kubernetes.io/name: smokeping-prober
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: smokeping-prober
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: smokeping-prober
+    spec:
+      tolerations:
+      - operator: Exists
+        effect: NoSchedule
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+      - name: smokeping-prober
+        image: quay.io/superq/smokeping-prober:latest
+        args:
+          - --web.listen-address=:9374
+          - --web.telemetry-path=/metrics
+          - --buckets=0.0002,0.0004,0.0008,0.0016,0.0032,0.0064,0.0128,0.0256,0.0512,0.1024,0.2048,0.4096,0.8192,1.6384,3.2768
+          - --ping.interval=1s
+          - --ping.size=56
+          - --privileged
+          - 192.168.50.185
+          - 192.168.50.178
+        env:
+        - name: GOMAXPROCS
+          value: "1"
+        ports:
+        - name: metrics
+          containerPort: 9374
+          protocol: TCP
+        securityContext:
+          privileged: true
