@@ -1,0 +1,28 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: smokeping-prober
+  namespace: smokeping-prober
+spec:
+  namespaceSelector:
+    matchNames:
+      - smokeping-prober
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: smokeping-prober
+  podMetricsEndpoints:
+    - port: metrics
+      path: /metrics
+      interval: 15s
+      scheme: http
+      relabelings:
+        - action: replace
+          sourceLabels: [__meta_kubernetes_pod_node_name]
+          targetLabel: node
+        - action: replace
+          sourceLabels: [__meta_kubernetes_pod_name]
+          targetLabel: pod
+        - action: replace
+          sourceLabels: [__meta_kubernetes_pod_ip]
+          targetLabel: pod_ip
+
