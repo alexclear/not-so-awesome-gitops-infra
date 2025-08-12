@@ -6,23 +6,6 @@ spec:
   affinity:
     podAntiAffinityType: preferred
   backup:
-    barmanObjectStore:
-      destinationPath: s3://pg-grafana-backup
-      endpointURL: http://rook-ceph-rgw-ceph-objectstore.rook-ceph.svc.cluster.local
-      s3Credentials:
-        accessKeyId:
-          key: ACCESS_KEY_ID
-          name: grafana-s3-wals
-        region:
-          key: region
-          name: grafana-s3-wals
-        secretAccessKey:
-          key: ACCESS_SECRET_KEY
-          name: grafana-s3-wals
-      wal:
-        compression: gzip
-        maxParallel: 4
-    retentionPolicy: 10d
     target: prefer-standby
   bootstrap:
     initdb:
@@ -37,7 +20,7 @@ spec:
         name: grafana-db-root-user
   enableSuperuserAccess: false
   failoverDelay: 0
-  imageName: ghcr.io/cloudnative-pg/postgresql:15.8
+  imageName: ghcr.io/cloudnative-pg/postgresql:15.13
   instances: 3
   logLevel: debug
   maxSyncReplicas: 1
@@ -101,6 +84,11 @@ spec:
   smartShutdownTimeout: 180
   startDelay: 3600
   stopDelay: 1800
+  plugins:
+  - name: barman-cloud.cloudnative-pg.io
+    isWALArchiver: true
+    parameters:
+      barmanObjectName: pg-grafana-backup
   storage:
     resizeInUseVolumes: true
     size: 2Gi
