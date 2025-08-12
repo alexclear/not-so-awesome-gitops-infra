@@ -1,0 +1,22 @@
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: pg-grafana-backup
+spec:
+  configuration:
+    destinationPath: s3://pg-grafana-backup
+    endpointURL: http://rook-ceph-rgw-ceph-objectstore.rook-ceph.svc.cluster.local
+    s3Credentials:
+      accessKeyId:
+        key: ACCESS_KEY_ID
+        name: grafana-s3-wals
+      secretAccessKey:
+        key: ACCESS_SECRET_KEY
+        name: grafana-s3-wals
+      region:
+        key: region
+        name: grafana-s3-wals
+    wal:
+      compression: gzip
+      maxParallel: 4
+  retentionPolicy: 10d
