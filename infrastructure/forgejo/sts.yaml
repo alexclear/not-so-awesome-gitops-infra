@@ -33,6 +33,8 @@ spec:
               mountPath: /home/forgejo/data
             - name: tmp-volume
               mountPath: /tmp
+            - name: root-cache
+              mountPath: /root/.cache
             - name: local-share
               mountPath: /home/forgejo/.local
       #volumes:
@@ -66,3 +68,7 @@ spec:
         requests:
           storage: 3Gi
       storageClassName: ceph-block-3-uncompressed
+  volumes:
+  - name: root-cache
+    persistentVolumeClaim:
+      claimName: root-cache
