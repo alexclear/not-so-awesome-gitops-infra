@@ -37,9 +37,10 @@ spec:
               mountPath: /root/.cache
             - name: local-share
               mountPath: /home/forgejo/.local
-      #volumes:
-      #  - name: tmp-volume
-      #    emptyDir: {}
+      volumes:
+      - name: root-cache
+        persistentVolumeClaim:
+          claimName: root-cache
   volumeClaimTemplates:
   - metadata:
       name: runner-data
@@ -68,7 +69,3 @@ spec:
         requests:
           storage: 3Gi
       storageClassName: ceph-block-3-uncompressed
-  volumes:
-  - name: root-cache
-    persistentVolumeClaim:
-      claimName: root-cache
