@@ -49,6 +49,17 @@ spec:
         ingressClassName: nginx
 
     cephBlockPools:
+      - name: rbd
+        storageClass:
+          enabled: false
+        spec:
+          failureDomain: host
+          replicated:
+            size: 3
+          parameters:
+            # Inline compression mode for the data pool
+            # Further reference: https://docs.ceph.com/docs/master/rados/configuration/bluestore-config-ref/#inline-compression
+            compression_mode: aggressive
       - name: ceph-blockpool-3
         storageClass:
           enabled: true
