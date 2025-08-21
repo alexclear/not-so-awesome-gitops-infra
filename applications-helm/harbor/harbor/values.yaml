@@ -364,3 +364,5 @@ metrics:
   ##
   serviceMonitor:
     enabled: true
+
+logLevel: debug
