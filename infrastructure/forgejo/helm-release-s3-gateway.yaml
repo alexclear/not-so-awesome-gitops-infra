@@ -1,0 +1,56 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: hysteria-s3-gateway
+  namespace: flux-system
+spec:
+  interval: 5m
+  targetNamespace: forgejo
+  releaseName: hysteria-s3-gateway
+  chart:
+    spec:
+      chart: nginx-s3-gateway
+      version: "1.0.0"
+      sourceRef:
+        kind: HelmRepository
+        name: camptocamp3
+        namespace: flux-system
+      interval: 1m
+  install:
+    createNamespace: true
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  values:
+    s3:
+      accesskey:
+        secret:
+          name: hysteria
+          key: AWS_ACCESS_KEY_ID
+      secretkey:
+        secret:
+          name: hysteria
+          key: AWS_SECRET_ACCESS_KEY
+      bucketName: hysteria
+      server: rook-ceph-rgw-ceph-objectstore.rook-ceph.svc.cluster.local
+      proto: http
+      port: 80
+      style: path
+      region: us-east-1
+      awsSigsVersion: 2
+      allowDirectoryList: true
+      provideIndexPage: true
+    ingress:
+      enabled: true
+      className: "nginx"
+      annotations:
+        cert-manager.io/cluster-issuer: local-root-ca-issuer
+      hosts:
+        - host: hysteria.spbnix.local
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+      tls:
+        - secretName: hysteria-tls
+          hosts:
+            - hysteria.spbnix.local
