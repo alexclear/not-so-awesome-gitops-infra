@@ -1,12 +1,12 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: stamp-bpf
+  name: stamp-bpf-sender
   namespace: flux-system
 spec:
   interval: 5m
   targetNamespace: stamp-bpf
-  releaseName: stamp-bpf
+  releaseName: stamp-bpf-sender
   chart:
     spec:
       chart: stamp-bpf
@@ -23,6 +23,15 @@ spec:
     crds: CreateReplace
   values:
     global:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: stamp-role
+                operator: NotIn
+                values:
+                - "reflector"
       image:
         repository: registry.spbnix.com/stamp-bpf/stamp-bpf
         tag: 3ecc9f8
@@ -36,7 +45,7 @@ spec:
       reflectorIPs:
         - 192.168.50.185
     reflector:
-      interface: "ens33"
+      enabled: false
     
     hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
