@@ -1,0 +1,59 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: stamp-bpf
+  namespace: flux-system
+spec:
+  interval: 5m
+  targetNamespace: stamp-bpf
+  releaseName: stamp-bpf
+  chart:
+    spec:
+      chart: stamp-bpf
+      version: "0.1.11"
+      sourceRef:
+        kind: HelmRepository
+        name: stamp-bpf
+        namespace: flux-system
+      interval: 1m
+  install:
+    createNamespace: true
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  values:
+    global:
+      image:
+        repository: registry.spbnix.com/stamp-bpf/stamp-bpf
+        tag: 3ecc9f8
+        pullPolicy: IfNotPresent
+      tolerations:
+        - operator: Exists
+          effect: NoSchedule
+    sender:
+      enabled: true
+      reflectorIPs:
+        - 192.168.50.185
+    
+    hostNetwork: true
+    dnsPolicy: ClusterFirstWithHostNet
+    
+    securityContext:
+      privileged: true
+      
+    metrics:
+      enabled: false
+      port: 9374
+      path: /metrics
+      
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 50m
+        memory: 64Mi
+        
+    env:
+      - name: GOMAXPROCS
+        value: "1"
