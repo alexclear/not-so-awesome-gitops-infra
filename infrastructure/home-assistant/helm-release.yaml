@@ -48,12 +48,6 @@ spec:
       enabled: true
       size: 1Gi
       storageClass: "ceph-block-3"
-    extraVolumes:
-      - name: usb
-        hostPath:
-          path: >-
-            /dev/ttyUSB0
-          type: CharDevice
-    extraVolumeMounts:
-      - name: usb
-        mountPath: /dev/ttyUSB0
+    resources:
+      limits:
+        squat.ai/serial: 1
