@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: stamp-bpf
-      version: "0.1.11"
+      version: "0.1.13"
       sourceRef:
         kind: HelmRepository
         name: stamp-bpf
@@ -34,7 +34,7 @@ spec:
                 - "reflector"
       image:
         repository: registry.spbnix.com/stamp-bpf/stamp-bpf
-        tag: 3ecc9f8
+        tag: f62c2c0
         pullPolicy: IfNotPresent
       tolerations:
         - operator: Exists
