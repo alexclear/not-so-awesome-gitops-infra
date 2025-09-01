@@ -34,6 +34,9 @@ spec:
       enabled: true
       hosts:
         - host: home-assistant.spbnix.local
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
     persistence:
       enabled: true
       size: 1Gi
