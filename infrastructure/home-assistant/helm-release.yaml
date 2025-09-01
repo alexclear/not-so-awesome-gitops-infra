@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: home-assistant
+  namespace: flux-system
+spec:
+  interval: 5m
+  targetNamespace: home-assistant
+  releaseName: home-assistant
+  chart:
+    spec:
+      chart: home-assistant
+      version: "1.8.0"
+      sourceRef:
+        kind: HelmRepository
+        name: home-assistant
+        namespace: flux-system
+      interval: 1m
+  install:
+    createNamespace: true
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  values:
+    nodeSelector:
+      "node-role.kubernetes.io/home-assistant": "true"
+    homeAssistant:
+      owner:
+        create: true
+        existingSecret: home-assistant
+    ingress:
+      enabled: true
+      hosts:
+        - host: home-assistant.spbnix.local
+    persistence:
+      enabled: true
+      size: 1Gi
+      storageClass: "ceph-block-3"
