@@ -28,6 +28,8 @@ spec:
       owner:
         create: true
         existingSecret: home-assistant
+      setupHacsJobs:
+        enabled: true
     ingress:
       enabled: true
       hosts:
