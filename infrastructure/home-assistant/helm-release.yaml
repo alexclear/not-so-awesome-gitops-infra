@@ -51,3 +51,4 @@ spec:
     resources:
       limits:
         squat.ai/serial: 1
+        squat.ai/asus-bt500: 1
