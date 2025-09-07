@@ -30,6 +30,7 @@ spec:
             - usb:
               - vendor: "0b05"
                 product: "190e"
+        - --device
         - |
           name: serial
           groups:
