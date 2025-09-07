@@ -52,3 +52,12 @@ spec:
       limits:
         squat.ai/serial: 1
         squat.ai/asus-bt500: 1
+    extraVolumes:
+      - name: dbus-socket
+        hostPath:
+          path: /var/run/dbus
+          type: Directory
+    extraVolumeMounts:
+      - name: dbus-socket
+        mountPath: /var/run/dbus
+        readOnly: true
