@@ -25,6 +25,12 @@ spec:
         args:
         - --device
         - |
+          name: asus-bt500
+          groups:
+            - usb:
+              - vendor: "0b05"
+                product: "190e"
+        - |
           name: serial
           groups:
             - paths:
