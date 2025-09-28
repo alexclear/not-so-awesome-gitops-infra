@@ -3,6 +3,8 @@ kind: StatefulSet
 metadata:
   name: forgejo-dockerless-runner
   namespace: forgejo
+  annotations:
+    container.apparmor.security.beta.kubernetes.io/runner: unconfined
 spec:
   serviceName: forgejo-dockerless-runner
   replicas: 1
@@ -25,6 +27,8 @@ spec:
             readOnlyRootFilesystem: false
             capabilities:
               add: ["SYS_ADMIN"]
+            seccompProfile:
+              type: Unconfined
           envFrom:
             - secretRef:
                 name: forgejo-token
