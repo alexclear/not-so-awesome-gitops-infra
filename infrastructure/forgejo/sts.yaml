@@ -20,13 +20,9 @@ spec:
       initContainers:
       - name: format-podman-graph
         image: alpine:3.20
-        command: ["sh", "-c", "apk add --no-cache e2fsprogs util-linux && if ! blkid /dev/rbdblock >/dev/null 2>&1; then mkfs.ext4 -F /dev/rbdblock; fi; grep -q ' /var/lib/containers ' /proc/mounts || mount -t ext4 /dev/rbdblock /var/lib/containers"]
+        command: ["sh", "-c", "apk add --no-cache e2fsprogs util-linux && if ! blkid /dev/rbdblock >/dev/null 2>&1; then mkfs.ext4 -F /dev/rbdblock; fi"]
         securityContext:
           privileged: true
-        volumeMounts:
-        - name: podman-graph-mnt
-          mountPath: /var/lib/containers
-          mountPropagation: Bidirectional
         volumeDevices:
         - name: podman-graph
           devicePath: /dev/rbdblock
@@ -57,11 +53,22 @@ spec:
               mountPath: /root/.cache
             - name: local-share
               mountPath: /home/forgejo/.local
-            - name: podman-graph-mnt
-              mountPath: /var/lib/containers
-              mountPropagation: HostToContainer
             - name: podman-run
               mountPath: /var/run/containers
+          volumeDevices:
+          - name: podman-graph
+            devicePath: /dev/rbdblock
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                - sh
+                - -c
+                - |
+                  mkdir -p /var/lib/containers
+                  if ! mountpoint -q /var/lib/containers; then
+                    mount -t ext4 /dev/rbdblock /var/lib/containers
+                  fi
       volumes:
       - name: root-cache
         persistentVolumeClaim:
@@ -69,8 +76,6 @@ spec:
       - name: podman-run
         emptyDir:
           medium: Memory
-      - name: podman-graph-mnt
-        emptyDir: {}
   volumeClaimTemplates:
   - metadata:
       name: runner-data
