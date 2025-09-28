@@ -53,9 +53,13 @@ spec:
         persistentVolumeClaim:
           claimName: root-cache
       - name: podman-graph
-        emptyDir: {}
+        hostPath:
+          path: /var/lib/forgejo-runner/containers
+          type: DirectoryOrCreate
       - name: podman-run
-        emptyDir: {}
+        hostPath:
+          path: /var/run/forgejo-runner/containers
+          type: DirectoryOrCreate
   volumeClaimTemplates:
   - metadata:
       name: runner-data
