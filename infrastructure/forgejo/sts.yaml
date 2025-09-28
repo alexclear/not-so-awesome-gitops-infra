@@ -27,6 +27,27 @@ spec:
         - name: podman-graph
           devicePath: /dev/rbdblock
       containers:
+        - name: rbd-mounter
+          image: alpine:3.20
+          securityContext:
+            privileged: true
+          command:
+          - sh
+          - -c
+          - |
+            apk add --no-cache util-linux
+            mkdir -p /mnt/src /mnt/dst
+            mount /dev/rbdblock /mnt/src
+            mount --bind /mnt/src /mnt/dst
+            echo "Mounted /dev/rbdblock -> /mnt/dst"
+            tail -f /dev/null
+          volumeDevices:
+          - name: podman-graph
+            devicePath: /dev/rbdblock
+          volumeMounts:
+          - name: podman-graph-mnt
+            mountPath: /mnt/dst
+            mountPropagation: Bidirectional
         - name: runner
           image: "registry.spbnix.com/dockerhub-cache/gitinsky/dockerless-forgejo-runner:e80107a"
           securityContext:
@@ -53,29 +74,23 @@ spec:
               mountPath: /root/.cache
             - name: local-share
               mountPath: /home/forgejo/.local
+            - name: podman-graph-mnt
+              mountPath: /var/lib/containers
+              mountPropagation: HostToContainer
             - name: podman-run
               mountPath: /var/run/containers
-          volumeDevices:
-          - name: podman-graph
-            devicePath: /dev/rbdblock
-          lifecycle:
-            postStart:
-              exec:
-                command:
-                - sh
-                - -c
-                - |
-                  mkdir -p /var/lib/containers
-                  if ! mountpoint -q /var/lib/containers; then
-                    mount -t ext4 /dev/rbdblock /var/lib/containers
-                  fi
       volumes:
       - name: root-cache
         persistentVolumeClaim:
           claimName: root-cache
+      - name: podman-graph
+        persistentVolumeClaim:
+          claimName: podman-graph-forgejo-dockerless-runner-0
       - name: podman-run
         emptyDir:
           medium: Memory
+      - name: podman-graph-mnt
+        emptyDir: {}
   volumeClaimTemplates:
   - metadata:
       name: runner-data
