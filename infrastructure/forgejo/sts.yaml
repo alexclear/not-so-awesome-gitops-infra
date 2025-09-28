@@ -17,11 +17,14 @@ spec:
       restartPolicy: Always
       containers:
         - name: runner
-          image: "gitinsky/dockerless-forgejo-runner:ced6468"
+          image: "gitinsky/dockerless-forgejo-runner:ded0ad4"
           securityContext:
             privileged: true
+            allowPrivilegeEscalation: true
             runAsUser: 0
             readOnlyRootFilesystem: false
+            capabilities:
+              add: ["SYS_ADMIN"]
           envFrom:
             - secretRef:
                 name: forgejo-token
@@ -37,10 +40,18 @@ spec:
               mountPath: /root/.cache
             - name: local-share
               mountPath: /home/forgejo/.local
+            - name: podman-graph
+              mountPath: /var/lib/containers
+            - name: podman-run
+              mountPath: /var/run/containers
       volumes:
       - name: root-cache
         persistentVolumeClaim:
           claimName: root-cache
+      - name: podman-graph
+        emptyDir: {}
+      - name: podman-run
+        emptyDir: {}
   volumeClaimTemplates:
   - metadata:
       name: runner-data
