@@ -1,0 +1,54 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: redis-ha
+  namespace: flux-system
+spec:
+  interval: 5m
+  targetNamespace: forgejo
+  releaseName: redis-ha
+  chart:
+    spec:
+      chart: redis-ha
+      version: "4.26.1"
+      sourceRef:
+        kind: HelmRepository
+        name: dandydev
+        namespace: flux-system
+      interval: 1m
+  install:
+    createNamespace: true
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  values:
+    exporter:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    persistentVolume:
+      enabled: false
+    redis:
+      masterGroupName: forgejo
+      config:
+        # -- Will save the DB if both the given number of seconds and the given number of write operations against the DB occurred. `""`  is disabled
+        # @default -- `'""'`
+        save: ""
+        appendonly: "no"
+        maxmemory: "1gb"
+      disableCommands:
+        - FLUSHALL
+    ## Enables a HA Proxy for better LoadBalancing / Sentinel Master support. Automatically proxies to Redis master.
+    haproxy:
+      enabled: true
+      metrics:
+        enabled: true
+      hardAntiAffinity: true
+      containerSecurityContext:
+        readOnlyRootFilesystem: true
+    hardAntiAffinity: true
+    containerSecurityContext:
+      readOnlyRootFilesystem: true
+    emptyDir:
+      medium: Memory
+      sizeLimit: 1Gi
