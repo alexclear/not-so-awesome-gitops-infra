@@ -8,6 +8,15 @@ gitea:
   config:
     service:
       DISABLE_REGISTRATION: "true"
+  queue:
+    TYPE: redis
+    CONN_STR: redis://redis-ha-haproxy:6379/0
+  cache:
+    ADAPTER: redis
+    HOST: redis://redis-ha-haproxy:6379/1
+  session:
+    PROVIDER: redis
+    PROVIDER_CONFIG: redis://redis-ha-haproxy:6379/2
 
 postgresql-ha:
   enabled: false
@@ -55,10 +64,7 @@ service:
     clusterIP:
 
 redis-cluster:
-  enabled: true
-  persistence:
-    storageClass: "ceph-block-3"
-    size: 2Gi
+  enabled: false
 
 ingress:
   enabled: true
