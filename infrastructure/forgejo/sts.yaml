@@ -19,7 +19,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: runner
-          image: "registry.spbnix.com/dockerhub-cache/gitinsky/dockerless-forgejo-runner:ded0ad4"
+          image: "registry.spbnix.com/dockerhub-cache/gitinsky/dockerless-forgejo-runner:e80107a"
           securityContext:
             privileged: true
             allowPrivilegeEscalation: true
