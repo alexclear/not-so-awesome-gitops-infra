@@ -17,6 +17,15 @@ spec:
         app: forgejo-dockerless-runner
     spec:
       restartPolicy: Always
+      initContainers:
+      - name: format-podman-graph
+        image: busybox
+        command: ["sh", "-c", "mkfs.ext4 /dev/rbdblock && mount /dev/rbdblock /var/lib/containers"]
+        securityContext:
+          privileged: true
+        volumeDevices:
+        - name: podman-graph
+          devicePath: /dev/rbdblock
       containers:
         - name: runner
           image: "registry.spbnix.com/dockerhub-cache/gitinsky/dockerless-forgejo-runner:e80107a"
@@ -52,14 +61,12 @@ spec:
       - name: root-cache
         persistentVolumeClaim:
           claimName: root-cache
-      - name: podman-graph
-        hostPath:
-          path: /var/lib/forgejo-runner/containers
-          type: DirectoryOrCreate
       - name: podman-run
-        hostPath:
-          path: /var/run/forgejo-runner/containers
-          type: DirectoryOrCreate
+        emptyDir:
+          medium: Memory
+    volumeDevices:
+    - name: podman-graph
+      devicePath: /dev/rbdblock
   volumeClaimTemplates:
   - metadata:
       name: runner-data
@@ -88,3 +95,13 @@ spec:
         requests:
           storage: 3Gi
       storageClassName: ceph-block-3-uncompressed
+  - metadata:
+      name: podman-graph
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      storageClassName: ceph-block-3
+      resources:
+        requests:
+          storage: 50Gi
+      volumeMode: Block
