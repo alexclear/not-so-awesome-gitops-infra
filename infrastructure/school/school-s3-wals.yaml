@@ -1,0 +1,15 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: school-s3-wals
+  namespace: pg-school
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: school-s3-wals
+  dataFrom:
+  - extract:
+      key: school-s3-wals
