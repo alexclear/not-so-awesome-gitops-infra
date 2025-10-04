@@ -1,0 +1,8 @@
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: pg-school-backup
+  namespace: pg-school
+spec:
+  bucketName: pg-school-backup
+  storageClassName: ceph-bucket
