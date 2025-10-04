@@ -7,23 +7,6 @@ spec:
   affinity:
     podAntiAffinityType: preferred
   backup:
-    barmanObjectStore:
-      destinationPath: s3://pg-school-backup
-      endpointURL: http://rook-ceph-rgw-ceph-objectstore.rook-ceph.svc.cluster.local
-      s3Credentials:
-        accessKeyId:
-          key: ACCESS_KEY_ID
-          name: school-s3-wals
-        region:
-          key: region
-          name: school-s3-wals
-        secretAccessKey:
-          key: ACCESS_SECRET_KEY
-          name: school-s3-wals
-      wal:
-        compression: gzip
-        maxParallel: 4
-    retentionPolicy: 10d
     target: prefer-standby
   bootstrap:
     initdb:
@@ -103,6 +86,11 @@ spec:
   smartShutdownTimeout: 180
   startDelay: 3600
   stopDelay: 1800
+  plugins:
+  - name: barman-cloud.cloudnative-pg.io
+    isWALArchiver: true
+    parameters:
+      barmanObjectName: pg-school-backup
   storage:
     resizeInUseVolumes: true
     size: 6Gi
