@@ -1,0 +1,17 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: school-db-app-user
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: school-db-app-user
+  dataFrom:
+  - extract:
+      key: school-db-app-user
+      metadataPolicy: None
+      conversionStrategy: Default
+      decodingStrategy: None
