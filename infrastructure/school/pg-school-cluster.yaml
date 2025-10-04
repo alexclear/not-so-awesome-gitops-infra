@@ -36,7 +36,7 @@ spec:
         name: school-db-app-user
   enableSuperuserAccess: false
   failoverDelay: 0
-  imageName: ghcr.io/cloudnative-pg/postgresql:14.15-standard
+  imageName: ghcr.io/cloudnative-pg/postgresql:14.19-standard-bookworm
   instances: 3
   logLevel: debug
   maxSyncReplicas: 1
