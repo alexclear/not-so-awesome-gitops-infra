@@ -35,8 +35,6 @@ spec:
       secret:
         name: school-db-app-user
   enableSuperuserAccess: false
-  replica:
-    enabled: false
   failoverDelay: 0
   imageName: ghcr.io/cloudnative-pg/postgresql:14.15-standard
   instances: 3
