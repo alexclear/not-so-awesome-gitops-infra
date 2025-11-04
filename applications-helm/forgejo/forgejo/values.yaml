@@ -46,7 +46,7 @@ postgresql:
       memory: 192Mi
   image:
     registry: docker.io
-    repository: bitnami/postgresql
+    repository: bitnamilegacy/postgresql
     tag: 16.4.0-debian-12-r9
 
 persistence:
