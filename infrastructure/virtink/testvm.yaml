@@ -2,6 +2,7 @@ apiVersion: virt.virtink.smartx.com/v1alpha1
 kind: VirtualMachine
 metadata:
   name: ubuntu-container-rootfs
+  namespace: virtink
 spec:
   instance:
     memory:
