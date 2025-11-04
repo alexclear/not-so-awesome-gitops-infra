@@ -1890,6 +1890,8 @@ spec:
       labels:
         name: virt-daemon
     spec:
+      nodeSelector:
+        node-role.kubernetes.io/cloud-hypervisor: "true"
       containers:
       - args:
         - --zap-time-encoding=iso8601
