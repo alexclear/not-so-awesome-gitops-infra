@@ -1,5 +1,9 @@
 replicaCount: 1
 
+global:
+  security:
+    allowInsecureImages: true
+
 gitea:
   admin:
     existingSecret: gitea-admin-secret
