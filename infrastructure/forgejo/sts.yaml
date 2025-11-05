@@ -49,7 +49,7 @@ spec:
             mountPath: /mnt/dst
             mountPropagation: Bidirectional
         - name: runner
-          image: "registry.spbnix.com/dockerhub-cache/gitinsky/dockerless-forgejo-runner:6f7eed4"
+          image: "registry.spbnix.com/dockerhub-cache/gitinsky/dockerless-forgejo-runner:0a1c9b9"
           securityContext:
             privileged: true
             allowPrivilegeEscalation: true
