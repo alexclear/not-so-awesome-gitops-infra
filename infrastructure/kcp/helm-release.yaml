@@ -29,3 +29,6 @@ spec:
       storageClassName: "ceph-block-3"
     kcp:
       volumeClassName: "ceph-block-3"
+    kcpFrontProxy:
+      service:
+        type: LoadBalancer
