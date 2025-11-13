@@ -77,8 +77,10 @@ spec:
             - name: podman-graph-mnt
               mountPath: /var/lib/containers
               mountPropagation: HostToContainer
-            - name: podman-run
+            - name: podman-graph-mnt
               mountPath: /var/run/containers
+              subPath: run
+              mountPropagation: HostToContainer
       volumes:
       - name: root-cache
         persistentVolumeClaim:
