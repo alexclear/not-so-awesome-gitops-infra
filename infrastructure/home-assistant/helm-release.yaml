@@ -48,10 +48,6 @@ spec:
       enabled: true
       size: 1Gi
       storageClass: "ceph-block-3"
-    resources:
-      limits:
-        squat.ai/serial: 1
-        squat.ai/asus-bt500: 1
     extraVolumes:
       - name: dbus-socket
         hostPath:
