@@ -26,11 +26,13 @@ spec:
       install-opensearch: false
       install-mongodb: false
 
+    graylog:
       persistence:
         enabled: true
         size: "2Gi"
         storageClass: "ceph-block-3"
 
+      heapSize: "1g"
       opensearch:
         hosts: "http://opensearch-cluster-master-headless.graylog.svc.cluster.local:9200"
 
@@ -39,4 +41,6 @@ spec:
         uriSecretKey: "connectionString.standard"
     opensearch:
       enabled: false
-    heapSize: "1g"
+    mongodb:
+      community:
+        install: false
