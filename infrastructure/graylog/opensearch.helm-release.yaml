@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: opensearch
-      version: "3.3.2"
+      version: "2.35.1"
       sourceRef:
         kind: HelmRepository
         name: opensearch
