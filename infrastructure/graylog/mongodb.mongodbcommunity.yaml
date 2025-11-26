@@ -36,3 +36,10 @@ spec:
             resources:
               requests:
                 storage: "2Gi"
+        - metadata:
+            name: logs-volume
+          spec:
+            resources:
+              requests:
+                storage: "1Gi"
+            storageClassName: "ceph-block-3"
