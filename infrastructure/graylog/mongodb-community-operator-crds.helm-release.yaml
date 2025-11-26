@@ -1,0 +1,24 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mongodb-community-operator-crds
+  namespace: graylog
+spec:
+  interval: 5m
+  targetNamespace: graylog
+  releaseName: mongodb-community-operator-crds
+  chart:
+    spec:
+      chart: community-operator-crds
+      version: "0.13.0"
+      sourceRef:
+        kind: HelmRepository
+        name: mongodb
+        namespace: flux-system
+      interval: 1m
+  install:
+    createNamespace: true
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  values:
