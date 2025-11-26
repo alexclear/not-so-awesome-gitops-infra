@@ -42,10 +42,11 @@ spec:
       input:
         udp:
           service:
+            name: syslog
             type: LoadBalancer
-            ports:
-              - name: syslog
-                port: 514
+          ports:
+            - name: syslog
+              port: 514
     opensearch:
       enabled: false
     mongodb:
