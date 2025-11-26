@@ -24,5 +24,6 @@ spec:
   values:
     database:
       name: graylog
+      namespace: graylog
     community-operator-crds:
       enabled: false
