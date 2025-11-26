@@ -39,6 +39,13 @@ spec:
       mongodb:
         uriSecretName: "mongodb-graylog-graylog"
         uriSecretKey: "connectionString.standard"
+      input:
+        udp:
+          service:
+            type: LoadBalancer
+            ports:
+              - name: syslog
+                port: 514
     opensearch:
       enabled: false
     mongodb:
