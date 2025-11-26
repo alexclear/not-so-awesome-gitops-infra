@@ -23,7 +23,7 @@ spec:
     crds: CreateReplace
   values:
     database:
-      name: graylog
+      name: mongodb-database
       namespace: graylog
     community-operator-crds:
       enabled: false
