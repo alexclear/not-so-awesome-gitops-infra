@@ -49,7 +49,8 @@ spec:
               port: 514
       ingress:
         enabled: true
-        annotations: {}
+        annotations:
+          cert-manager.io/cluster-issuer: local-root-ca-issuer
         ingressClassName: "nginx"
         hosts:
           - graylog-pve1.spbnix.local
