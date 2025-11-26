@@ -47,6 +47,16 @@ spec:
           ports:
             - name: syslog
               port: 514
+      ingress:
+        enabled: true
+        annotations: {}
+        ingressClassName: "nginx"
+        hosts:
+          - graylog-pve1.spbnix.local
+        tls:
+          - secretName: graylog-server-tls
+            hosts:
+              - graylog-pve1.spbnix.local
     opensearch:
       enabled: false
     mongodb:
