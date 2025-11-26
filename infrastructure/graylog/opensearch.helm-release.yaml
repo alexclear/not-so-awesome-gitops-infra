@@ -27,9 +27,13 @@ spec:
       opensearch.yml: |-
         cluster.name: graylog
         network.host: 0.0.0.0
-    #extraEnvs:
+    extraEnvs:
     #  - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
     #    value: <strong_password>
+      - name: plugins.security.ssl.http.enabled
+        value: "false"
+      - name: plugins.security.disabled
+        value: "true"
     envFrom:
       - secretRef:
           name: graylog-opensearch-env
